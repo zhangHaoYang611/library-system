@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>借阅记录</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>书名</th><th>借阅日期</th><th>归还日期</th><th>状态</th><th>操作</th>
+    </tr>
+    <tr th:each="record : ${records}">
+        <td th:text="${record.book.title}"></td>
+        <td th:text="${#dates.format(record.borrowDate, 'yyyy-MM-dd')}"></td>
+        <td th:text="${#dates.format(record.returnDate, 'yyyy-MM-dd')}"></td>
+        <td th:text="${record.status}"></td>
+        <td th:if="${record.status == 'borrowed'}">
+            <a th:href="@{'/borrow/return/' + ${record.id}}">归还</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
