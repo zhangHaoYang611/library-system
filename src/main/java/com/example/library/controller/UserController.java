@@ -51,4 +51,10 @@ public class UserController {
         session.invalidate();
         return "redirect:/login";
     }
+
+    // 这个方法会处理对网站根目录的访问，并自动跳转到登录页面
+    @GetMapping("/")
+    public String redirectToLogin() {
+        return "redirect:/login";
+    }
 }
