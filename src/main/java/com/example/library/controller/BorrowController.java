@@ -40,8 +40,10 @@ public class BorrowController {
 
     @GetMapping("/return/{recordId}")
     public String returnBook(@PathVariable Integer recordId) {
-        BorrowRecord record = borrowService.getUserRecords(recordId).get(0);
-        borrowService.returnBook(record);
+        BorrowRecord record = borrowService.getRecordById(recordId);
+        if (record != null) {
+            borrowService.returnBook(record);
+        }
         return "redirect:/borrow/list";
     }
 }

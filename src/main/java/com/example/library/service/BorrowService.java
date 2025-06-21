@@ -51,4 +51,8 @@ public class BorrowService {
     public List<BorrowRecord> getUserRecords(Integer userId) {
         return borrowRecordRepository.findByUserId(userId);
     }
+
+    public BorrowRecord getRecordById(Integer recordId) {
+        return borrowRecordRepository.findById(recordId).orElse(null);
+    }
 }
