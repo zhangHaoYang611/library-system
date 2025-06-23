@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/book")
 public class BookController {
@@ -38,5 +40,13 @@ public class BookController {
     public String delete(@PathVariable Integer id) {
         bookService.deleteById(id);
         return "redirect:/book/list";
+    }
+
+    @GetMapping("/search")
+    public String search(@RequestParam String keyword, Model model) {
+        List<Book> books = bookService.searchBooks(keyword);
+        model.addAttribute("books", books);
+        model.addAttribute("keyword", keyword);
+        return "book_list";
     }
 }

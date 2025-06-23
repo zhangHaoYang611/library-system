@@ -27,4 +27,8 @@ public class BookService {
     public Book findById(Integer id) {
         return bookRepository.findById(id).orElse(null);
     }
+
+    public List<Book> searchBooks(String keyword) {
+        return bookRepository.findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCase(keyword, keyword);
+    }
 }

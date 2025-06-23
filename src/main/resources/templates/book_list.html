@@ -5,6 +5,15 @@
 </head>
 <body>
 <a th:href="@{/book/add}">添加图书</a>
+
+<!-- 搜索框开始 -->
+<form th:action="@{/book/search}" method="get" style="margin-bottom: 20px;">
+    <input type="text" name="keyword" th:value="${keyword}" placeholder="请输入书名或作者关键字"/>
+    <button type="submit">搜索</button>
+    <a th:href="@{/book/list}">重置</a>
+</form>
+<!-- 搜索框结束 -->
+
 <table>
     <tr>
         <th>书名</th><th>作者</th><th>库存</th><th>操作</th>
